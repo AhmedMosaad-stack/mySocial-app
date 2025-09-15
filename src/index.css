@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@plugin './hero.js';
+
+/* Note: You may need to change the path to fit your project structure */
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:is(.dark *));
+
+.active {
+  @apply font-bold text-orange-600 border-orange-500;
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.loader:before , .loader:after{
+  content: '';
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
+}
+.loader:after {
+  box-shadow: 0 2px 0 #FF3D00 inset;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {  transform: rotate(0)}
+  100% { transform: rotate(360deg)}
+}
