@@ -21,11 +21,11 @@ export function UserDataProvider({ children }) {
     });
   }
 
-  const { data, isLoading, error, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["getUserData"],
     queryFn: getUserData,
   });
-
+  if (isLoading || !data?.data?.user) return <Loader />;
   useEffect(() => {
     if (data?.data?.user) {
       setuserID(data.data.user._id);
@@ -33,20 +33,21 @@ export function UserDataProvider({ children }) {
       setuserName(data.data.user.name);
       setuserDOB(data.data.user.dateOfBirth);
       setuserPhoto(data.data.user.photo);
-      setuserGender(data.data.user.gender)
+      setuserGender(data.data.user.gender);
     }
   }, [data]);
 
-
-  if (isLoading) {
-    return (
-      <Loader/>
-    );
-  }
-
   return (
     <userData.Provider
-      value={{ userID, userDOB, userEmail, userName, userPhoto, setuserPhoto ,userGender }}
+      value={{
+        userID,
+        userDOB,
+        userEmail,
+        userName,
+        userPhoto,
+        setuserPhoto,
+        userGender,
+      }}
     >
       {children}
     </userData.Provider>
