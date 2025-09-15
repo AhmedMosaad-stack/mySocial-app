@@ -16,6 +16,7 @@ import { userData } from "../../Context/UserData";
 import { useForm } from "react-hook-form";
 import { IoIosClose } from "react-icons/io";
 import toast from "react-hot-toast";
+import Loader from "../Loader/Loader";
 export const MailIcon = (props) => {
   return (
     <svg
@@ -77,6 +78,10 @@ export default function Profile() {
   function clearData() {
     reset();
     setIsShow(false);
+  }
+  if (!userID) {
+    return <Loader/>
+    
   }
   return (
     <div className="min-h-screen ">

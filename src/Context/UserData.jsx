@@ -1,13 +1,13 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../Pages/Loader/Loader";
 
 export const userData = createContext();
 
 export function UserDataProvider({ children }) {
   const { userToken } = useContext(AuthContext);
+
   function getUserData() {
     return axios.get("https://linked-posts.routemisr.com/users/profile-data", {
       headers: { token: userToken },
@@ -18,13 +18,11 @@ export function UserDataProvider({ children }) {
     queryKey: ["getUserData"],
     queryFn: getUserData,
   });
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <userData.Provider
       value={{
+        isLoading,
         userID: data?.data?.user?._id,
         userDOB: data?.data?.user?.dateOfBirth,
         userEmail: data?.data?.user?.email,
