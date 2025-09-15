@@ -1,9 +1,9 @@
 import { FaComments, FaFileImage } from "react-icons/fa";
-import imgholder from "../../assets/Portrait_Placeholder.jpg";
+import imgholder from "../../../assets/Portrait_Placeholder.jpg";
 import { Button, Input, useDisclosure } from "@heroui/react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../../../Context/AuthContext";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
@@ -20,9 +20,9 @@ import {
   ModalFooter,
 } from "@heroui/react";
 import { HiDotsVertical } from "react-icons/hi";
-import UpdatePost from "../UpdatePost/UpdatePost";
-import DeletePost from "../DeletePost/DeletePost";
-import { userData } from "../../Context/UserData";
+import UpdatePost from "../../UpdatePost/UpdatePost";
+import DeletePost from "../../DeletePost/DeletePost";
+import { userData } from "../../../Context/UserData";
 export default function PostCard({ post }) {
   const { userToken } = useContext(AuthContext);
   const { userID } = useContext(userData);

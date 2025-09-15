@@ -72,7 +72,7 @@ export default function Nav() {
       <NavbarContent justify="end">
         {!userToken ? (
           <>
-            <NavbarItem className="hidden text-gray-400 flex">
+            <NavbarItem className=" text-gray-400 flex">
               <NavLink to={"/login"}>Login</NavLink>
             </NavbarItem>
             <NavbarItem>

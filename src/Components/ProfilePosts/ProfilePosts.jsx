@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
-import PostCard from "../PostCard/PostCard";
 import Loader from "../../Pages/Loader/Loader";
+import PostCard from "../Footer/PostCard/PostCard";
 export default function ProfilePosts({ id }) {
   const { userToken } = useContext(AuthContext);
   function getUserPosts() {

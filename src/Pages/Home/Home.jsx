@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import PostCard from "../../Components/PostCard/PostCard";
 import { Input } from "@heroui/react";
 import Loader from "../Loader/Loader";
 import Addpost from "../../Components/AddPost/Addpost";
+import PostCard from "../../Components/Footer/PostCard/PostCard";
 
 export default function Home() {
   const { userToken } = useContext(AuthContext);

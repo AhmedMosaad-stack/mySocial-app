@@ -8,13 +8,6 @@ export const userData = createContext();
 
 export function UserDataProvider({ children }) {
   const { userToken } = useContext(AuthContext);
-  const [userID, setuserID] = useState(null);
-  const [userDOB, setuserDOB] = useState(null);
-  const [userEmail, setuserEmail] = useState(null);
-  const [userName, setuserName] = useState(null);
-  const [userPhoto, setuserPhoto] = useState(null);
-  const [userGender, setuserGender] = useState(null);
-
   function getUserData() {
     return axios.get("https://linked-posts.routemisr.com/users/profile-data", {
       headers: { token: userToken },
@@ -25,28 +18,19 @@ export function UserDataProvider({ children }) {
     queryKey: ["getUserData"],
     queryFn: getUserData,
   });
-  if (isLoading || !data?.data?.user) return <Loader />;
-  useEffect(() => {
-    if (data?.data?.user) {
-      setuserID(data.data.user._id);
-      setuserEmail(data.data.user.email);
-      setuserName(data.data.user.name);
-      setuserDOB(data.data.user.dateOfBirth);
-      setuserPhoto(data.data.user.photo);
-      setuserGender(data.data.user.gender);
-    }
-  }, [data]);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <userData.Provider
       value={{
-        userID,
-        userDOB,
-        userEmail,
-        userName,
-        userPhoto,
-        setuserPhoto,
-        userGender,
+        userID: data?.data?.user?._id,
+        userDOB: data?.data?.user?.dateOfBirth,
+        userEmail: data?.data?.user?.email,
+        userName: data?.data?.user?.name,
+        userPhoto: data?.data?.user?.photo,
+        userGender: data?.data?.user?.gender,
       }}
     >
       {children}

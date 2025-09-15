@@ -6,13 +6,13 @@ import { AuthContext } from "../../Context/AuthContext";
 import { FaCheck, FaComments, FaFileImage } from "react-icons/fa";
 import { Button, Input, Spinner } from "@heroui/react";
 import imgholder from "../../assets/Portrait_Placeholder.jpg";
-import PostCard from "../../Components/PostCard/PostCard";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import toast from "react-hot-toast";
 import DeleteComment from "../../Components/DeleteComment/DeleteComment";
 import { userData } from "../../Context/UserData";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import PostCard from "../../Components/Footer/PostCard/PostCard";
 
 export default function PostDetails() {
   const { userToken } = useContext(AuthContext);
