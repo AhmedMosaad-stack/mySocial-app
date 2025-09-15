@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { userData } from "../../Context/UserData";
 import toast from "react-hot-toast";
-export default function UpdatePost({ post, isOpen, onOpenChange }) {
+export default function Update({ post, isOpen, onOpenChange }) {
   const { userToken } = useContext(AuthContext);
   const [Loading, setLoading] = useState(false);
 

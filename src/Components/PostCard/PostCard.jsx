@@ -1,9 +1,9 @@
 import { FaComments, FaFileImage } from "react-icons/fa";
-import imgholder from "../../../assets/Portrait_Placeholder.jpg";
+import imgholder from "../../assets/Portrait_Placeholder.jpg";
 import { Button, Input, useDisclosure } from "@heroui/react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
@@ -20,14 +20,13 @@ import {
   ModalFooter,
 } from "@heroui/react";
 import { HiDotsVertical } from "react-icons/hi";
-import { userData } from "../../../Context/UserData";
-import UpdatePost from "../../UpdatePost/updatePost";
-import DeletePost from "../../DeletePost/DeletePost";
+import UpdatePost from "../UpdatePost/UpdatePost";
+import DeletePost from "../DeletePost/DeletePost";
+import { userData } from "../../Context/UserData";
 export default function PostCard({ post }) {
   const { userToken } = useContext(AuthContext);
   const { userID } = useContext(userData);
   const location = useLocation();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
@@ -56,12 +55,22 @@ export default function PostCard({ post }) {
                 <DropdownTrigger>
                   <HiDotsVertical className="cursor-pointer" />
                 </DropdownTrigger>
-                <DropdownMenu >
+                <DropdownMenu>
                   {/* اول ما تدوس على Edit يفتح المودال */}
-                  <DropdownItem key="edit" onClick={() => setEditModal(true)} color="" className="hover:bg-gray-100/10">
+                  <DropdownItem
+                    key="edit"
+                    onClick={() => setEditModal(true)}
+                    color=""
+                    className="hover:bg-gray-100/10"
+                  >
                     Edit
                   </DropdownItem>
-                  <DropdownItem key="delete" onClick={() => setDeleteModal(true)} className="text-red-500 hover:bg-red-600/10" color="">
+                  <DropdownItem
+                    key="delete"
+                    onClick={() => setDeleteModal(true)}
+                    className="text-red-500 hover:bg-red-600/10"
+                    color=""
+                  >
                     Delete
                   </DropdownItem>
                 </DropdownMenu>

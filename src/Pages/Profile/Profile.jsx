@@ -54,7 +54,7 @@ export default function Profile() {
     setLoading(true);
     const formData = new FormData();
     if (data.body) formData.append("body", data.body);
-    if (data.image[0]) formData.append("image", data.image[0]);
+    if (data.image && data.image[0]) formData.append("image", data.image[0]);
 
     axios
       .post(`https://linked-posts.routemisr.com/posts`, formData, {

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import PostCard from "../../Components/Footer/PostCard/PostCard";
+import PostCard from "../../Components/PostCard/PostCard";
 import { Input } from "@heroui/react";
 import Loader from "../Loader/Loader";
 import Addpost from "../../Components/AddPost/Addpost";
@@ -25,7 +25,8 @@ export default function Home() {
   });
 
   if (isError) {
-    return <h1 className="min-h-screen">{error}</h1>;
+    console.log(error);
+    ;
   }
 
   if (isLoading) {
