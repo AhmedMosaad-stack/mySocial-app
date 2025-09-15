@@ -29,6 +29,7 @@ export function UserDataProvider({ children }) {
         userName: data?.data?.user?.name,
         userPhoto: data?.data?.user?.photo,
         userGender: data?.data?.user?.gender,
+        isLoading,
       }}
     >
       {children}

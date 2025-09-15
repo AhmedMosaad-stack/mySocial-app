@@ -37,7 +37,7 @@ export const MailIcon = (props) => {
   );
 };
 export default function Profile() {
-  const { userID, userName, userPhoto } = useContext(userData);
+  const { userID, userName, userPhoto,isLoading } = useContext(userData);
   const [IsShow, setIsShow] = useState(false);
   const { userToken } = useContext(AuthContext);
   const [Loading, setLoading] = useState(false);
@@ -79,7 +79,7 @@ export default function Profile() {
     reset();
     setIsShow(false);
   }
-  if (!userID) {
+  if (isLoading) {
     return <Loader/>
     
   }
