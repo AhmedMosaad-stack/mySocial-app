@@ -9,16 +9,20 @@ export function UserDataProvider({ children }) {
   const { userToken } = useContext(AuthContext);
 
   function getUserData() {
-    return axios.get("https://linked-posts.routemisr.com/users/profile-data", {
-      headers: { token: userToken },
+    return axios.get(`https://linked-posts.routemisr.com/users/profile-data`, {
+      headers: {
+        token: userToken,
+      },
     });
   }
 
   const { data, isLoading } = useQuery({
     queryKey: ["getUserData"],
     queryFn: getUserData,
+    enabled: !!userToken,
   });
-
+ console.log(data);
+ 
   return (
     <userData.Provider
       value={{
