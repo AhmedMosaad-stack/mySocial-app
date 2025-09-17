@@ -34,10 +34,12 @@ export default function Nav() {
       shouldHideOnScroll
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="sm:hidden"
-      />
+      {userToken && (
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+      )}
       <NavbarBrand className="text-gray-200">
         {userToken ? (
           <NavLink to={"/"} className="text-orange-500">
@@ -128,7 +130,13 @@ export default function Nav() {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{userEmail}</p>
               </DropdownItem>
-              <DropdownItem key="settings" as={NavLink} to={"/settings"} className="text-gray-300 hover:bg-gray-100/10" color="">
+              <DropdownItem
+                key="settings"
+                as={NavLink}
+                to={"/settings"}
+                className="text-gray-300 hover:bg-gray-100/10"
+                color=""
+              >
                 My Settings
               </DropdownItem>
 
