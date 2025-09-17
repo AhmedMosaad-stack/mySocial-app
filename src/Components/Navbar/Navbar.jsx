@@ -40,13 +40,13 @@ export default function Nav() {
       />
       <NavbarBrand className="text-gray-200">
         {userToken ? (
-          <Link to={"/"} className="text-orange-500">
+          <NavLink to={"/"} className="text-orange-500">
             <SiSocialblade className="text-6xl" />
-          </Link>
+          </NavLink>
         ) : (
-          <Link to={"/login"} className="text-gray-200">
+          <NavLink to={"/login"} className="text-gray-200">
             <SiSocialblade className="text-6xl" />
-          </Link>
+          </NavLink>
         )}
       </NavbarBrand>
       {userToken && (
