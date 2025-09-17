@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../../Context/AuthContext";
 import { FaCheck, FaComments, FaFileImage } from "react-icons/fa";
 import { Button, Input, Spinner } from "@heroui/react";
@@ -19,7 +19,7 @@ export default function PostDetails() {
   const { id } = useParams();
   const [Loading, setLoading] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-
+const queryClient=useQueryClient()
   const { userID } = useContext(userData);
   const [showMore, setShowMore] = useState(5);
   function getPostDetails() {
@@ -52,7 +52,9 @@ export default function PostDetails() {
       });
     }
   }, [data, reset]);
-  async function addComment(value) {
+
+
+  function addComment(value) {
     setLoading(true);
 
     axios
@@ -63,6 +65,7 @@ export default function PostDetails() {
       })
       .then((res) => {
         toast.success("Comment is added successfully!");
+        queryClient.invalidateQueries(["getPostDetails"])
         reset();
       })
       .catch((error) => {

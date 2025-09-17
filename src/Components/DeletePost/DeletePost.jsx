@@ -12,10 +12,12 @@ import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
+
 export default function DeletePost({ post, isOpen, onOpenChange }) {
   const { userToken } = useContext(AuthContext);
   const [Loading, setLoading] = useState(false);
-
+  const queryClient = useQueryClient();
   const { handleSubmit } = useForm();
 
   function deletePost() {
@@ -30,6 +32,7 @@ export default function DeletePost({ post, isOpen, onOpenChange }) {
         console.log(res);
         onOpenChange(false);
         toast.success("Successfully deleted!");
+        queryClient.invalidateQueries(["getPosts"]);
       })
       .catch((err) => {
         console.log(err);

@@ -8,7 +8,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 
-
 export const EyeSlashFilledIcon = (props) => {
   return (
     <svg
@@ -119,14 +118,14 @@ export default function Login() {
   }
 
   return (
-    <div className=" bg-gradient-to-r from-gray-500  to-zinc-900">
+    <div>
       <div className="min-h-screen text-center md:flex justify-between items-center  w-[90%] md:w-[80%] lg:w-[60%] mx-auto">
-        <h2 className="p-5 font-extrabold text-3xl md:text-7xl underline text-zinc-900">
+        <h2 className="w-full p-5 font-extrabold text-3xl md:text-7xl 2xl:text-9xl underline text-zinc-900">
           WELCOME!
         </h2>
         <form
           onSubmit={handleSubmit(handleLogin)}
-          className="p-7 border-1 border-zinc-100/10 rounded-2xl shadow-2xl  bg-zinc-900/50"
+          className="p-7 border-1 border-zinc-100/10 rounded-2xl shadow-2xl size-full bg-zinc-900/50"
         >
           {apiError && (
             <h2 className="text-gray-300 text-center text-shadow-2xs font-bold p-3 bg-red-700/70 shadow rounded-2xl">
@@ -137,17 +136,16 @@ export default function Login() {
           <Input
             isInvalid={!!errors.email}
             errorMessage={errors.email?.message}
-            className="my-3 text-gray-300"
+            className="my-3"
             size="sm"
             label="Email"
             type="email"
-            variant="underlined"
-            color=""
+            variant="faded"
             {...register("email")}
           />
           <Input
             isInvalid={!!errors.password}
-            className="my-3 text-gray-300"
+            className="my-3"
             endContent={
               <button
                 aria-label="toggle password visibility"
@@ -164,22 +162,25 @@ export default function Login() {
             }
             label="Password"
             type={isVisible ? "text" : "password"}
-            variant="underlined"
-            color=""
+            variant="faded"
             size="sm"
             {...register("password")}
           />
 
           <Button
             variant="bordered"
-            color="default"
+            color=""
             disabled={isLoading}
             type="submit"
-            className="mt-4 text-gray-400"
+            className="mt-4 text-orange-500"
           >
-            {!isLoading ? "Sign in" : <Spinner color="default" />}
+            {!isLoading ? (
+              "Sign in"
+            ) : (
+              <Spinner color="" className="text-orange-500" />
+            )}
           </Button>
-          <span className="text-zinc-900 font-semibold text-[0.80rem] w-full block mt-3">
+          <span className="text-gray-400 font-semibold text-[0.80rem] w-full block mt-3">
             Don't have an account?
             <Link to={"/register"} className="font-bold">
               {" "}

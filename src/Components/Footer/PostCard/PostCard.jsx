@@ -31,7 +31,7 @@ export default function PostCard({ post }) {
   const [deleteModal, setDeleteModal] = useState(false);
 
   return (
-    <>
+    <div className="max-h-svh">
       <div className="header flex justify-between items-center gap-2 ">
         <div className="flex items-center gap-2">
           <div>
@@ -98,7 +98,7 @@ export default function PostCard({ post }) {
           <img
             src={post.image}
             alt={post.body}
-            className="postImage my-3 w-full h-svh object-cover rounded-2xl"
+            className="postImage my-3 w-full max-h-[400px] object-contain rounded-2xl"
           />
         )}
       </div>
@@ -123,6 +123,6 @@ export default function PostCard({ post }) {
           </Button>
         )}
       </div>
-    </>
+    </div>
   );
 }

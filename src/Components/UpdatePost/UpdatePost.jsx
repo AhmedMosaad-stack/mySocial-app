@@ -16,12 +16,12 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { userData } from "../../Context/UserData";
 import toast from "react-hot-toast";
-
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Update({ post, isOpen, onOpenChange }) {
   const { userToken } = useContext(AuthContext);
   const [Loading, setLoading] = useState(false);
-
+  const queryClient = useQueryClient();
   const { register, handleSubmit, watch, reset } = useForm({
     defaultValues: {
       body: "",
@@ -40,7 +40,7 @@ export default function Update({ post, isOpen, onOpenChange }) {
   const img = watch("image");
 
   function updatePost(data) {
-    setLoading(true)
+    setLoading(true);
     const formData = new FormData();
     data.body && formData.append("body", data.body);
     if (data.image !== post.image && data.image)
@@ -56,6 +56,7 @@ export default function Update({ post, isOpen, onOpenChange }) {
         console.log(res);
         onOpenChange(false);
         toast.success("Successfully updated!");
+        queryClient.invalidateQueries(["getPosts"])
       })
       .catch((err) => {
         console.log(err);

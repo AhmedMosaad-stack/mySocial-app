@@ -74,7 +74,6 @@ export default function Password() {
   const toggleVisibility = () => setIsVisible(!isVisible);
   const toggleVisibility2 = () => setIsVisible2(!isVisible2);
   const [Loading, setLoading] = useState(false);
-
   const schema = z.object({
     password: z.string(),
 
@@ -100,7 +99,7 @@ export default function Password() {
     mode: "onBlur",
     resolver: zodResolver(schema),
   });
- 
+
   function changePass(values) {
     axios
       .patch(
@@ -116,7 +115,6 @@ export default function Password() {
         toast.success("Password changed successfully!");
         setUserToken(res.data.token);
         localStorage.setItem("userToken", res.data.token);
-        console.log(res);
         setLoading(false);
         reset();
       })
@@ -125,7 +123,7 @@ export default function Password() {
         console.log(err);
       });
   }
-  
+
   return (
     <form
       onSubmit={handleSubmit(changePass)}

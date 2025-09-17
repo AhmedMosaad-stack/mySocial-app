@@ -21,7 +21,6 @@ export function UserDataProvider({ children }) {
     queryFn: getUserData,
     enabled: !!userToken,
   });
- console.log(data);
  
   return (
     <userData.Provider

@@ -149,12 +149,12 @@ export default function Register() {
   return (
     <div className="">
       <div className="min-h-screen text-center md:flex justify-between items-center py-12 w-[90%] md:w-[80%] lg:w-[60%] mx-auto">
-        <h2 className="w-full p-5 font-extrabold text-7xl underline text-zinc-900">
+        <h2 className="w-full p-5 font-extrabold text-7xl 2xl:text-9xl underline text-zinc-900">
           SIGN UP
         </h2>
         <form
           onSubmit={handleSubmit(handleRegister)}
-          className="p-7 border-1 border-zinc-100/10 rounded-lg shadow-2xl w-full  bg-zinc-900/50"
+          className="p-7 border-1 border-zinc-100/10 rounded-2xl shadow-2xl w-full  bg-zinc-900/50"
         >
           {apiError && (
             <h2 className="text-gray-300 text-center text-shadow-2xs font-bold p-3 bg-red-700/70 shadow rounded-2xl">
@@ -165,73 +165,69 @@ export default function Register() {
           <Input
             isInvalid={!!errors.name}
             errorMessage={errors.name?.message}
-            className="my-3 text-gray-300"
+            className="my-3"
             label="Name"
             type="text"
-            variant="underlined"
-            color=""
+            variant="faded"
             size="sm"
             {...register("name")}
           />
           <Input
             isInvalid={!!errors.email}
             errorMessage={errors.email?.message}
-            className="my-3 text-gray-300"
+            className="my-3"
             size="sm"
             label="Email"
             type="email"
-            variant="underlined"
-            color=""
+            variant="faded"
             {...register("email")}
           />
           <Input
-          endContent={
-        <button
-          aria-label="toggle password visibility"
-          className="focus:outline-solid outline-transparent"
-          type="button"
-          onClick={toggleVisibility}
-        >
-          {isVisible ? (
-            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          ) : (
-            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          )}
-        </button>
-      }
+            endContent={
+              <button
+                aria-label="toggle password visibility"
+                className="focus:outline-solid outline-transparent"
+                type="button"
+                onClick={toggleVisibility}
+              >
+                {isVisible ? (
+                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
             isInvalid={!!errors.password}
             errorMessage={errors.password?.message}
             className="my-3"
             size="sm"
             label="Password"
             type={isVisible ? "text" : "password"}
-            variant="underlined"
-            color=""
+            variant="faded"
             {...register("password")}
           />
           <Input
             isInvalid={!!errors.rePassword}
             errorMessage={errors.rePassword?.message}
-            className="my-3 text-gray-300"
+            className="my-3"
             label="Confirm Password"
-            variant="underlined"
-            color=""
+            variant="faded"
             type={isVisible2 ? "text" : "password"}
             size="sm"
             endContent={
-        <button
-          aria-label="toggle password visibility"
-          className="focus:outline-solid outline-transparent"
-          type="button"
-          onClick={toggleVisibility2}
-        >
-          {isVisible2 ? (
-            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          ) : (
-            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          )}
-        </button>
-      }
+              <button
+                aria-label="toggle password visibility"
+                className="focus:outline-solid outline-transparent"
+                type="button"
+                onClick={toggleVisibility2}
+              >
+                {isVisible2 ? (
+                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
             {...register("rePassword")}
           />
           <Controller
@@ -241,7 +237,7 @@ export default function Register() {
               <DatePicker
                 label="Birth date"
                 className="my-3 text-gray-300"
-                variant="flat"
+                variant="faded"
                 size="sm"
                 isInvalid={!!errors.dateOfBirth}
                 errorMessage={errors.dateOfBirth?.message}
@@ -272,8 +268,7 @@ export default function Register() {
                 label="Select gender"
                 placeholder="Gender"
                 size="sm"
-                variant="flat"
-                
+                variant="faded"
               >
                 <SelectItem key="male">Male</SelectItem>
                 <SelectItem key="female">Female</SelectItem>
@@ -282,13 +277,16 @@ export default function Register() {
           />
           <Button
             variant="flat"
-
             color=""
             disabled={isLoading}
             type="submit"
             className="mt-4 bg-orange-500 text-zinc-900 font-semibold"
           >
-            {!isLoading ? "Submit" : <Spinner color="default" />}
+            {!isLoading ? (
+              "Submit"
+            ) : (
+              <Spinner color="" className="text-orange-500" />
+            )}
           </Button>
         </form>
       </div>

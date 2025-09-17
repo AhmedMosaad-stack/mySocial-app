@@ -19,7 +19,7 @@ export default function Home() {
       },
     });
   }
-  const { data, error, isError, isFetching, isLoading } = useQuery({
+  const { data, error, isError, refetch, isLoading } = useQuery({
     queryKey: ["getPosts"],
     queryFn: getAllposts,
   });

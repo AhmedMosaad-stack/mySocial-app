@@ -5,12 +5,14 @@ import { useForm } from "react-hook-form";
 import { IoIosClose } from "react-icons/io";
 import { AuthContext } from "../../Context/AuthContext";
 import toast from "react-hot-toast";
+import { QueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Addpost() {
   const [IsShow, setIsShow] = useState(false);
   const { userToken } = useContext(AuthContext);
   const [Loading, setLoading] = useState(false);
-
+  const queryClient = useQueryClient();
   const { register, handleSubmit, watch, reset } = useForm({
     defaultValues: {
       body: "",
@@ -29,18 +31,18 @@ export default function Addpost() {
 
     axios
       .post(`https://linked-posts.routemisr.com/posts`, formData, {
-    
         headers: { token: userToken },
       })
       .then((response) => {
         if (response.data.message === "success") {
           toast.success("Post added successfully!");
+          queryClient.invalidateQueries(["getPosts"]);
           reset();
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message)
+        toast.error(error.message);
       })
       .finally(() => {
         setLoading(false);

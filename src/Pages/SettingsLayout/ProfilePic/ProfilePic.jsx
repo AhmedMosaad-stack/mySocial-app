@@ -6,12 +6,13 @@ import { IoIosClose } from "react-icons/io";
 import { AuthContext } from "../../../Context/AuthContext";
 import { userData } from "../../../Context/UserData";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProfilePic() {
   const { userToken } = useContext(AuthContext);
   const { setuserPhoto } = useContext(userData);
   const [Loading, setLoading] = useState(false);
-
+const queryClient=useQueryClient()
   const { register, handleSubmit, reset, watch } = useForm({
     defaultValues: {
       photo: null,
@@ -31,6 +32,7 @@ export default function ProfilePic() {
       })
       .then(() => {
         toast.success("Profile picture successfully changed!")
+        queryClient.invalidateQueries(["getUserData"])
         reset();
       })
       .catch((err) => {
