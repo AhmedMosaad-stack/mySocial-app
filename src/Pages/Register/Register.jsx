@@ -85,14 +85,14 @@ export default function Register() {
     .object({
       name: z
         .string()
-        .min(3, "Name must be atleast contains 3 characters.")
-        .max(10, "Name must be atmost contains 10 characters."),
+        .min(3, "Name must be at least contains 3 characters.")
+        .max(50, "Name must be at most contains 50 characters."),
       email: z.string().email("Invalid email."),
       password: z
         .string()
         .regex(
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-          "Password must contains atleast (1 uppercase, 1 lowercase, 1 number, 1 special char) and Minimum 8 characters."
+          "Password must contains at least (1 uppercase, 1 lowercase, 1 number, 1 special char) and Minimum 8 characters."
         ),
       rePassword: z.string(),
       dateOfBirth: z
@@ -102,8 +102,8 @@ export default function Register() {
           const userDate = new Date(date).getFullYear();
           const nowDate = new Date().getFullYear();
           return nowDate - userDate >= 10;
-        }, "You must be atleast 10 years old to can register."),
-      gender: z.enum(["male", "female"], {
+        }, "You must be at least 10 years old to can register."),
+      gender: z.enum(["male", "female", "Male", "Female"], {
         errorMap: () => ({ message: "Gender must be male or female." }),
       }),
     })
